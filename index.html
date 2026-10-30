@@ -25,10 +25,10 @@ code{background:var(--card);border:1px solid var(--line);padding:2px 6px;border-
 <main>
 <h1>Ponte Obsidian</h1>
 <section id="one" class="box" hidden>
-<p class="mut" id="st">Abrindo a nota…</p>
+<p class="mut" id="st">Toque no botão para abrir a nota no Obsidian.</p>
 <p class="name" id="nm"></p>
 <a class="btn" id="go" href="#">Abrir no Obsidian</a>
-<p class="mut">Se aparecer a pergunta do Safari para abrir o Obsidian, toque em Abrir. Se nada acontecer, toque no botão acima.</p>
+<p class="mut">Quando o Safari perguntar "Abrir com Obsidian?", toque em Abrir.</p>
 </section>
 <section id="all" class="box">
 <p>Juris Penal 2025. Toque em uma nota para abrir no Obsidian.</p>
@@ -54,7 +54,6 @@ if(m&&D[m[1]]){
  document.getElementById("one").hidden=false;
  document.getElementById("nm").textContent=D[n];
  document.getElementById("go").href=u;
- setTimeout(function(){try{location.href=u;}catch(e){document.getElementById("st").textContent="Toque no botão para abrir.";}},300);
 }
 </script>
 </html>
