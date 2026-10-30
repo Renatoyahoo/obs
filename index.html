@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ponte Obsidian</title>
+<style>
+:root{--bg:#f6f4fb;--fg:#1d1a2b;--mut:#6a6580;--ac:#6b3fd4;--acfg:#fff;--line:#ddd8ec;--card:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17141f;--fg:#eceaf5;--mut:#9d98b3;--ac:#a98bff;--acfg:#17141f;--line:#332e45;--card:#211d2d;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#17141f;--fg:#eceaf5;--mut:#9d98b3;--ac:#a98bff;--acfg:#17141f;--line:#332e45;--card:#211d2d;color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;padding-block:28px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+h1{font-size:1.5rem;margin:0;text-wrap:balance}
+p{margin:0}
+.mut{color:var(--mut);font-size:.9rem}
+.btn{display:block;text-align:center;background:var(--ac);color:var(--acfg);text-decoration:none;font-weight:600;padding:16px;border-radius:12px;font-size:1.1rem}
+.btn:focus-visible,a:focus-visible{outline:3px solid var(--fg);outline-offset:2px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.name{font-weight:600;overflow-wrap:anywhere}
+ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+li a{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);color:var(--fg);text-decoration:none;min-width:0}
+li a span:first-child{font-variant-numeric:tabular-nums;color:var(--ac);font-weight:600}
+li a span:last-child{overflow-wrap:anywhere}
+code{background:var(--card);border:1px solid var(--line);padding:2px 6px;border-radius:6px;font-size:.85rem}
+</style>
+<main>
+<h1>Ponte Obsidian</h1>
+<section id="one" class="box" hidden>
+<p class="mut" id="st">Abrindo a nota…</p>
+<p class="name" id="nm"></p>
+<a class="btn" id="go" href="#">Abrir no Obsidian</a>
+<p class="mut">Se aparecer a pergunta do Safari para abrir o Obsidian, toque em Abrir. Se nada acontecer, toque no botão acima.</p>
+</section>
+<section id="all" class="box">
+<p>Juris Penal 2025. Toque em uma nota para abrir no Obsidian.</p>
+<p class="mut">Para o Goodnotes, use o endereço desta página seguido de <code>#n003</code> (número da nota).</p>
+<ul id="list"></ul>
+</section>
+</main>
+<script>
+var VAULT="obsidian apple 1",BASE="CLAUDE/1_ JURIS_Claude/2025_Penal/";
+var D={"001":"001 - Não há injúria racial quando uma pessoa negra ofende uma pessoa","002":"002 - A proteção pública e notória da Amazônia Legal afasta a alegação","003":"003 - Um cabo de vassoura pode ser considerado arma branca imprópria c","004":"004 - A norma protetiva da Lei Maria da Penha deve ser aplicada (aplic","005":"005 - É constitucional o exercício do policiamento ostensivo e comunit","006":"006 - A intervenção do Judiciário na decisão dos jurados é excepcional","007":"007 - Juiz não pode aumentar a pena-base sob o argumento de que o roub","008":"008 - é flagrantemente ilegal a condenação pelo crime de tráfico de dr","009":"009 - Para a configuração do crime de prevaricação exige-se o dolo esp","010":"010 - Crimes de violação de domicílio e lesão corporal em contexto de","011":"011 - A confissão informal pode ser considerada para fins de aplicação","012":"012 - Em casos envolvendo a prática de homicídio na direção de veículo","013":"013 - Para concessão de salvo-conduto no plantio cannabis sativa para","014":"014 - A mera existência de discussão judicial acerca da validade do la","015":"015 - É necessária perícia técnica para configurar a qualificadora ref","016":"016 - O roubo praticado contra menor de idade no caminho da escola sup","017":"017 - Aplicada a pena restritiva de direitos (PRD), consistente na pre","018":"018 - A tipificação de condutas de pornografia infantil deve considera","019":"019 - É dispensável a comprovação do dolo específico (intenção deliber","020":"020 - Nas hipóteses em que o trânsito em julgado para a acusação ocorr","021":"021 - A aplicação da agravante do art. 61, II, f, do CP (com abuso de","022":"022 - A confissão possibilita a atenuação da pena mesmo que não tenha","023":"023 - Submeter trabalhadores a condições degradantes é suficiente para","024":"024 - Em uma execução, foram penhorados bens da empresa; o sócio foi n","025":"025 - 1. O dolo eventual é compatível com o reconhecimento de desígnio","026":"026 - Embriaguez ao volante e lesão corporal culposa configuram concur","027":"027 - Havendo previsão legal de penas alternativas, cabe ao magistrado","028":"028 - A expressão ‘por qualquer meio de comunicação’ prevista no art","029":"029 - O verbo nuclear “trazer consigo” previsto no art. 33 da Lei nº 1","030":"030 - Medidas protetivas de urgência devem ser mantidas por prazo inde","031":"031 - A qualificadora do homicídio praticado mediante paga ou promessa","032":"032 - Na análise das vetoriais da natureza e da quantidade da substânc","033":"033 - a execução da pena de multa ajuizada pelo Ministério Público, tr","034":"034 - O dolo no crime de estupro consiste na vontade de constranger a","035":"035 - Antes da Lei 14.9942024, a agravante do art. 61, II, f, do Códig","036":"036 - A prática de ato libidinoso com pessoa em estado de sono configu","037":"037 - XX vendia drogas com o auxílio de sua filha YY, uma adolescente","038":"038 - 1. A assistência jurídica qualificada prevista na Lei Maria da P","039":"039 - A determinação para que terceiro adquira e entregue droga, com d","040":"040 - A agravante do art. 61, II, f, (prevalecendo-se de relações domé","041":"041 - A suspensão da ação penal em crime tributário pode ser determina","042":"042 - Na aberratio ictus com unidade simples, o agente responde pelo c","043":"043 - A embriaguez voluntária e o ânimo exaltado do réu são suficiente","044":"044 - A regularização do loteamento solo para fins urbanos, antes do o","045":"045 - O delito de falsa identidade (307 cp) é crime formal, porquanto","046":"046 - A vítima de violência doméstica possui legitimidade para recorre","047":"047 - A premeditação autoriza a valoração negativa da circunstância da","048":"048 - A ausência do dolo específico de deteriorar ou destruir o patrim","049":"049 - 1. O limite de 1.000 maços estabelecido no Tema Repetitivo 1143","050":"050 - A maioridade subsequente da vítima não altera a natureza da ação","051":"051 - 1. Não se aplica o princípio da consunção entre furto qualificad","052":"052 - 1. A circulação de produto nacional, dentro do território brasil","053":"053 - O delito de invasão de terras públicas não exige o emprego de vi","054":"054 - 1. A expressão “guarda, poder ou autoridade” indica vínculo pree","055":"055 - O direito ao esquecimento pode ser aplicado para afastar a valor","056":"056 - O tipo previsto na primeira parte do caput do artigo 54 da Lei n","057":"057 - O corréu que atua em concurso com o comerciante na receptação po","058":"058 - O delito de uso de documento falso consuma-se com a simples apre","059":"059 - 1. O Superior Tribunal de Justiça é competente para julgar desem","060":"060 - O cometimento de crimes de roubo mediante uma única conduta e se","061":"061 - A perda da propriedade rural em favor da União pela prática do c","062":"062 - conforme sumula vinculante 63, o tráfico privilegiado (art. 33,","063":"063 - Para o reconhecimento da causa de diminuição de pena por colabor","064":"064 - A promessa de vantagem indevida para receber cartão amarelo em u","065":"065 - O crime do art. 218-A do CP (satisfação de lascívia mediante pre","066":"066 - A expressão ‘logo depois’ utilizada no art. 157, §1º, do CP, no","067":"067 - 1. Admite-se a detração penal de prisão provisória em processo d","068":"068 - A folha de respostas do Exame de Ordem da OAB é considerada docu","069":"069 - A redução do prazo prescricional pelo art. 115 do Código Penal n","070":"070 - A prestação pecuniária decorrente da efetivação da medida protet","071":"071 - A utilização de veículo automotor como meio para o tráfico de dr","072":"072 - A retratação nos crimes contra a honra é ato unilateral que pode","073":"073 - A interdição temporária do exercício profissional (art. 47, II,","074":"074 - O crime de fazer funcionar atividade potencialmente poluidora se","075":"075 - Os crimes de “Abolição violenta do Estado Democrático de Direito","076":"076 - Réu foi denunciado por pescar acima da profundidade mínima exigi","077":"077 - A qualificadora do art. 121, § 2º, VIII, do Código Penal (homicí","078":"078 - grupo teria criado empresas de fachada que emitiam notas fiscais","079":"079 - O crime do art. 20 da Lei dos Crimes contra o Sistema Financeiro","080":"080 - A fixação de danos morais coletivos decorrentes da prática de tr","081":"081 - A presença de substâncias controladas, ainda que misturadas, con","082":"082 - A quantidade e a diversidade de drogas apreendidas, além dos pet","083":"083 - O STJ pacificou o entendimento 1. fato de o réu ser assistido pe","084":"084 - O réu preso advogado que atua em causa própria deve ser intimado","085":"085 - A revisão criminal exige provas novas e não pode ser usada para","086":"086 - É obrigatória a formulação de quesito próprio sobre o excesso cu","087":"087 - Compete ao órgão fracionário criminal (Terceira Seção do STJ) ju","088":"088 - O procedimento formal de reconhecimento de pessoa (art. 226 do C","089":"089 - Não ajuizada revisão criminal, é possível o conhecimento de habe","090":"090 - A Súmula Vinculante 9 (SV 9) — que admite a perda integral dos d","091":"091 - Excepcionalmente, é possível a pronúncia com base em testemunhos","092":"092 - A revisão periódica prevista no parágrafo único do art. 316 do C","093":"093 - Para o STJ, o MP não pode requisitar RIF ao COAF sem autorização","094":"094 - 1. O crime de usurpação de matéria-prima da União, previsto no a","095":"095 - A obtenção de benefício previdenciário, quando não evidenciada f","096":"096 - Em crimes tributários praticados em continuidade delitiva (supre","097":"097 - Mesmo que o mandado de busca seja cumprido após o prazo indicado","098":"098 - Aplicação do princípio da lex diligentiae em cooperação internac","099":"099 - A apreensão de celular não exige ordem judicial, mas o acesso ao"};
+function url(n){return "obsidian://open?vault="+encodeURIComponent(VAULT)+"&file="+encodeURIComponent(BASE+D[n]);}
+var list=document.getElementById("list");
+Object.keys(D).sort().forEach(function(n){
+ var li=document.createElement("li"),a=document.createElement("a");
+ a.href=url(n);
+ var s1=document.createElement("span");s1.textContent=n;
+ var s2=document.createElement("span");s2.textContent=D[n].replace(/^\d{3} - /,"");
+ a.appendChild(s1);a.appendChild(s2);li.appendChild(a);list.appendChild(li);
+});
+var m=(location.hash||"").match(/(\d{3})/);
+if(m&&D[m[1]]){
+ var n=m[1],u=url(n);
+ document.getElementById("one").hidden=false;
+ document.getElementById("nm").textContent=D[n];
+ document.getElementById("go").href=u;
+ setTimeout(function(){try{location.href=u;}catch(e){document.getElementById("st").textContent="Toque no botão para abrir.";}},300);
+}
+</script>
+</html>
