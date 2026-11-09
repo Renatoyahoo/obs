@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ponte Anki</title>
+<style>
+:root{--bg:#f6f4fb;--fg:#1d1a2b;--mut:#6a6580;--ac:#6b3fd4;--acfg:#fff;--line:#ddd8ec;--card:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17141f;--fg:#eceaf5;--mut:#9d98b3;--ac:#a98bff;--acfg:#17141f;--line:#332e45;--card:#211d2d;color-scheme:dark}}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;margin:0;padding-block:28px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+h1{font-size:1.5rem;margin:0}
+p{margin:0}
+.mut{color:var(--mut);font-size:.9rem}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.name{font-weight:600;overflow-wrap:anywhere}
+.btn{display:block;text-align:center;background:var(--ac);color:var(--acfg);text-decoration:none;font-weight:600;padding:16px;border-radius:12px;font-size:1.1rem}
+.btn:focus-visible{outline:3px solid var(--fg);outline-offset:2px}
+</style>
+<main>
+<h1>Ponte Anki</h1>
+<section id="one" class="box" hidden>
+<p class="mut" id="st"></p>
+<p class="name" id="nm"></p>
+<a class="btn" id="go" href="#">Abrir no Anki</a>
+<p class="mut" id="hint"></p>
+</section>
+<section id="none" class="box" hidden>
+<p>Esta página abre cartas do Anki a partir de links colocados no Goodnotes.</p>
+<p class="mut">Nenhuma carta foi indicada neste link.</p>
+</section>
+</main>
+<script>
+var PORT=8766;
+function parseHash(h){
+ var o={},s=(h||"").replace(/^#/,"");
+ if(!s)return o;
+ s.split("&").forEach(function(p){
+  var i=p.indexOf("=");
+  if(i<1)return;
+  try{o[p.slice(0,i)]=decodeURIComponent(p.slice(i+1));}catch(e){}
+ });
+ return o;
+}
+function isTouchApple(){
+ var ua=navigator.userAgent||"";
+ return /iPad|iPhone|iPod/.test(ua)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
+}
+function run(){
+ var o=parseHash(location.hash);
+ if(!o.c||!/^\d+$/.test(o.c)){document.getElementById("none").hidden=false;return;}
+ var id=o.c;
+ document.getElementById("one").hidden=false;
+ document.getElementById("nm").textContent="Carta "+id;
+ var go=document.getElementById("go"),st=document.getElementById("st"),hint=document.getElementById("hint");
+ if(isTouchApple()){
+  go.href="anki://x-callback-url/search?query="+encodeURIComponent("cid:"+id);
+  st.textContent="Toque no botão para abrir a carta no AnkiMobile.";
+  hint.textContent="Quando o Safari perguntar \"Abrir com Anki?\", toque em Abrir.";
+ }else{
+  var u="http://127.0.0.1:"+PORT+"/open?cid="+id;
+  go.href=u;
+  st.textContent="Abrindo a carta no Anki…";
+  hint.textContent="O Anki precisa estar aberto, com o add-on \"PDF e Links Goodnotes\" instalado. Se nada acontecer, abra o Anki e toque no botão.";
+  setTimeout(function(){location.href=u;},300);
+ }
+}
+run();
+</script>
+</html>
